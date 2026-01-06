@@ -1,1 +1,611 @@
-# nolan
+# nolan<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nolan | Digital Strategist & Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #0a0a0a;
+            --secondary-color: #121212;
+            --accent-color: #8a6d3b;
+            --accent-light: #b89446;
+            --text-color: #f0f0f0;
+            --text-light: #b0b0b0;
+            --border-color: #333;
+            --card-bg: #1a1a1a;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--accent-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header and Navigation */
+        header {
+            background-color: var(--secondary-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .knight-logo {
+            font-size: 32px;
+            color: var(--accent-color);
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        /* Hamburger Menu */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+        
+        .hamburger-menu span {
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-color);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            font-size: 17px;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(138, 109, 59, 0.1);
+        }
+        
+        /* Hero Section with Quote */
+        .hero {
+            padding: 100px 0 80px;
+            background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+        
+        .quote-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: rgba(26, 26, 26, 0.8);
+            border-radius: 15px;
+            border-left: 5px solid var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            font-style: italic;
+            color: var(--accent-light);
+        }
+        
+        .quote-author {
+            font-size: 20px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        /* Blog Preview Section */
+        .blogs-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: var(--accent-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .blog-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .blog-1-img {
+            background-image: url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .blog-2-img {
+            background-image: url('https://images.unsplash.com/photo-1620336655055-bd87c5d1d73f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .blog-3-img {
+            background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w-1350&q=80');
+        }
+        
+        .blog-content {
+            padding: 25px;
+        }
+        
+        .blog-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            min-height: 60px;
+        }
+        
+        .blog-excerpt {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            font-size: 15px;
+            display: none;
+        }
+        
+        .blog-excerpt.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .read-more {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+        }
+        
+        .read-more:hover {
+            background-color: var(--accent-light);
+            color: var(--primary-color);
+        }
+        
+        /* Social Media Section */
+        .social-section {
+            padding: 60px 0;
+            background-color: var(--secondary-color);
+            text-align: center;
+        }
+        
+        .social-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .social-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .social-icon i {
+            font-size: 28px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover i {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Contact and Footer */
+        .contact-section {
+            padding: 80px 0 40px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            font-size: 24px;
+            color: var(--accent-color);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+        }
+        
+        .contact-details p {
+            color: var(--text-light);
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .location {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .location i {
+            color: var(--accent-color);
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .copyright {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 80px;
+            right: -100%;
+            width: 300px;
+            height: calc(100vh - 80px);
+            background-color: var(--secondary-color);
+            z-index: 999;
+            transition: right 0.5s ease;
+            padding: 40px;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .mobile-nav.active {
+            right: 0;
+        }
+        
+        .mobile-nav ul {
+            list-style: none;
+        }
+        
+        .mobile-nav ul li {
+            margin-bottom: 25px;
+        }
+        
+        .mobile-nav ul li a {
+            font-size: 20px;
+            font-weight: 500;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .quote-text {
+                font-size: 24px;
+            }
+            
+            .blog-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .hamburger-menu {
+                display: flex;
+            }
+            
+            .hero {
+                padding: 80px 0 60px;
+            }
+            
+            .quote-container {
+                padding: 30px;
+            }
+            
+            .quote-text {
+                font-size: 22px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            
+            .social-icons {
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 24px;
+            }
+            
+            .knight-logo {
+                font-size: 28px;
+            }
+            
+            .quote-text {
+                font-size: 20px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .blog-card {
+                margin: 0 auto;
+                max-width: 350px;
+            }
+            
+            .mobile-nav {
+                width: 100%;
+            }
+            
+            .social-icons {
+                gap: 15px;
+            }
+            
+            .social-icon i {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <div class="knight-logo">♘</div>
+                <div class="logo-text">Nolan</div>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="blog1.html">Blog 1</a></li>
+                    <li><a href="blog2.html">Blog 2</a></li>
+                    <li><a href="blog3.html">Blog 3</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Hamburger Menu for Mobile -->
+            <div class="hamburger-menu" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog1.html">The Eyeballs Method</a></li>
+                <li><a href="blog2.html">Crypto Revolution</a></li>
+                <li><a href="blog3.html">Affordable Websites</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section with Quote -->
+    <section class="hero">
+        <div class="container">
+            <div class="quote-container">
+                <p class="quote-text">"God's grace has been my constant compass, transforming trials into triumphs. His infinite wisdom is the source of my greatest inspirations."</p>
+                <p class="quote-author">— Marshall St. Nolan</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Preview Section -->
+    <section class="blogs-section">
+        <div class="container">
+            <h2 class="section-title">Latest Insights</h2>
+            <div class="blog-grid">
+                <!-- Blog 1 Preview -->
+                <div class="blog-card">
+                    <div class="blog-img blog-1-img"></div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">The Eyeballs Method: Generating Organic Traffic From Zero</h3>
+                        <div class="blog-excerpt" id="excerpt1">
+                            <p>Discover my revolutionary marketing strategy that helps you build an audience and drive traffic organically, even with no existing followers. The Eyeballs Method is designed to help you attract clients and grow your online presence from scratch.</p>
+                            <p>This method focuses on creating valuable content that naturally attracts attention without paid advertising. By implementing the Eyeballs Method consistently, you can establish authority in your niche and generate sustainable organic growth.</p>
+                            <p>The beauty of the Eyeballs Method lies in its simplicity and effectiveness. It doesn't require a large budget or technical expertise - just a strategic approach to creating and distributing content that resonates with your target audience.</p>
+                        </div>
+                        <button class="read-more" data-target="excerpt1">Read More</button>
+                    </div>
+                </div>
+                
+                <!-- Blog 2 Preview -->
+                <div class="blog-card">
+                    <div class="blog-img blog-2-img"></div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">You're a Failure If You Don't Own Ethereum & Solana in 2026</h3>
+                        <div class="blog-excerpt" id="excerpt2">
+                            <p>An in-depth analysis of Ethereum and Solana's evolution and why these cryptocurrencies are essential for your financial future. Understand the blockchain revolution and why missing out could be your biggest regret.</p>
+                            <p>Ethereum has transformed from a simple smart contract platform to the foundation of decentralized finance. Solana's lightning-fast transactions and low fees have positioned it as a serious contender in the blockchain space.</p>
+                            <p>By 2026, not having exposure to these technological marvels could mean missing the most significant wealth transfer of our generation. The blockchain revolution is just beginning, and Ethereum and Solana are at the forefront.</p>
+                        </div>
+                        <button class="read-more" data-target="excerpt2">Read More</button>
+                    </div>
+                </div>
+                
+                <!-- Blog 3 Preview -->
+                <div class="blog-card">
+                    <div class="blog-img blog-3-img"></div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">Professional Websites at Unbeatable Prices</h3>
+                        <div class="blog-excerpt" id="excerpt3">
+                            <p>Your digital presence shouldn't cost a fortune. Discover why you need a professionally designed website now and how I can create one for you at an affordable price that delivers exceptional value and results.</p>
+                            <p>In today's digital world, your website is your storefront, business card, and salesperson all in one. A professionally designed website builds credibility, attracts customers, and converts visitors into clients.</p>
+                            <p>I specialize in creating elegant, responsive websites that not only look stunning but also perform exceptionally. With my expertise in both design and development, I deliver websites that exceed expectations without breaking your budget.</p>
+                        </div>
+                        <button class="read-more" data-target="excerpt3">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-section">
+        <div class="container">
+            <h3 class="social-title">Connect With Me</h3>
+            <div class="social-icons">
+                <a href="https://instagram.com/nolanislockedin" target="_blank" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://t.me/Wo2rich" target="_blank" class="social-icon">
+                    <i class="fab fa-telegram"></i>
+                    <span>Telegram</span>
+                </a
